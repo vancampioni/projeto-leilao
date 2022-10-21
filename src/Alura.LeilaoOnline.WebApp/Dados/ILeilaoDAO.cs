@@ -11,6 +11,8 @@ namespace Alura.LeilaoOnline.WebApp.Dados
 
         public IEnumerable<Leilao> BuscarLeiloes();
 
+        public IEnumerable<Leilao> PesquisarLeiloes(string termo);
+
         public Leilao BuscarPorId(int id);
 
         public void Incluir(Leilao leilao);

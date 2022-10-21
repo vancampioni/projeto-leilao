@@ -26,6 +26,17 @@ namespace Alura.LeilaoOnline.WebApp.Dados.EfCore
             .ToList();
         }
 
+        public IEnumerable<Leilao> PesquisarLeiloes(string termo)
+        {
+            return _context.Leiloes
+                .Include(l => l.Categoria)
+                .Where(l => string.IsNullOrWhiteSpace(termo) ||
+                    l.Titulo.ToUpper().Contains(termo.ToUpper()) ||
+                    l.Descricao.ToUpper().Contains(termo.ToUpper()) ||
+                    l.Categoria.Descricao.ToUpper().Contains(termo.ToUpper())
+                );
+        }
+
         public Leilao BuscarPorId(int id)
         {
             return _context.Leiloes.First(l => l.Id == id); // Outra opção => Find
